@@ -20,6 +20,17 @@ package com.github.jrh3k5.habitat4j.rest;
  * #L%
  */
 
+/**
+ * Definition of a provider of access tokens.
+ * 
+ * @author jrh3k5
+ */
+
 public interface AccessTokenProvider {
+    /**
+     * Gets the access token.
+     * 
+     * @return A {@link AccessToken} representing a token to make an authorized call into the Nest service.
+     */
     AccessToken getAccessToken();
 }

@@ -45,8 +45,8 @@ import com.github.jrh3k5.habitat4j.rest.jaxrs.JaxRsAccessTokenProvider;
  * @author jrh3k5
  */
 
-public class JaxRsccessTokenProviderTester {
-    private static final Logger LOGGER = LoggerFactory.getLogger(JaxRsccessTokenProviderTester.class);
+public class JaxRsAccessTokenProviderTester {
+    private static final Logger LOGGER = LoggerFactory.getLogger(JaxRsAccessTokenProviderTester.class);
 
     /**
      * Executes the application.

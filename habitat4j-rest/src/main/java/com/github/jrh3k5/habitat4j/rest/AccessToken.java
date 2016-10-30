@@ -22,8 +22,24 @@ package com.github.jrh3k5.habitat4j.rest;
 
 import java.time.LocalDateTime;
 
+/**
+ * Definition of an access token used to authorize communications with Nest.
+ * 
+ * @author jrh3k5
+ */
+
 public interface AccessToken {
+    /**
+     * Gets the authorization token.
+     * 
+     * @return The authorization token.
+     */
     String getToken();
 
+    /**
+     * Gets the date and time of the expiration.
+     * 
+     * @return A {@link LocalDateTime} representing when the access token will expire.
+     */
     LocalDateTime getExpiration();
 }

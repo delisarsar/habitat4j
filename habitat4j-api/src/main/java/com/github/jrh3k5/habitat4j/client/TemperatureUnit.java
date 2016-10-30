@@ -20,6 +20,18 @@ package com.github.jrh3k5.habitat4j.client;
  * #L%
  */
 
+/**
+ * Units of temperature.
+ * 
+ * @author jrh3k5
+ */
 public enum TemperatureUnit {
-    CELSIUS, FARENHEIT;
+    /**
+     * The Celsius unit of measuring temperature
+     */
+    CELSIUS,
+    /**
+     * The Farenheit unit of measuring temperature
+     */
+    FARENHEIT;
 }

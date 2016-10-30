@@ -20,11 +20,20 @@ package com.github.jrh3k5.habitat4j.rest;
  * #L%
  */
 
+/**
+ * A helper class used to provision URLs for known Nest resources.
+ * 
+ * @author jrh3k5
+ */
+
 public class NestUrls {
-    static final String DEFAULT_OAUTH2_URL = "https://api.home.nest.com/oauth2/access_token";
+    private static final String DEFAULT_OAUTH2_URL = "https://api.home.nest.com/oauth2/access_token";
 
-    // TODO: make values injectable
-
+    /**
+     * Gets the URL used to retrieve OAuth 2.0 access tokens.
+     * 
+     * @return The URL used to retrieve OAuth 2.0 access tokens.
+     */
     public String getOauth2Url() {
         return DEFAULT_OAUTH2_URL;
     }

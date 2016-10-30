@@ -150,6 +150,5 @@ public class JaxRsAccessTokenProvider implements AccessTokenProvider {
         public LocalDateTime getExpiration() {
             return expiration;
         }
-
     }
 }

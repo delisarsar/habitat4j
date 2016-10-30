@@ -20,8 +20,47 @@ package com.github.jrh3k5.habitat4j.client;
  * #L%
  */
 
+/**
+ * Definition of a thermostat as exposed by Nest.
+ * 
+ * @author jrh3k5
+ */
+
 public interface Thermostat {
+    /**
+     * Gets the ID of the device.
+     * 
+     * @return The ID of the device.
+     */
     String getDeviceId();
 
-    float getAmbientTemperature(TemperatureUnit temperatureUnit);
+    /**
+     * Gets the temperature information of the thermostat.
+     * 
+     * @param temperatureUnit
+     *            The {@link TemperatureUnit} for which the returned temperatures are to be measured.
+     * @return A {@link Temperatures} object containing the desired temperature information.
+     */
+    Temperatures getTemperatureInformation(TemperatureUnit temperatureUnit);
+
+    /**
+     * Definition of temperature information available for a thermostat.
+     * 
+     * @author jrh3k5
+     */
+    interface Temperatures {
+        /**
+         * Gets the ambient temperature.
+         * 
+         * @return The ambient temperature.
+         */
+        float getAmbientTemperature();
+
+        /**
+         * Gets the temperature unit in which all temperatures expressed by this object are measured.
+         * 
+         * @return The temperature unit in which all temperatures expressed by this object are measured.
+         */
+        TemperatureUnit getTemperatureUnit();
+    }
 }

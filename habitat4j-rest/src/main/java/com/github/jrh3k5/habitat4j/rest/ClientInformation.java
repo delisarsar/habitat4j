@@ -22,26 +22,57 @@ import java.util.Objects;
  * #L%
  */
 
+/**
+ * Definition of the credentials needed to communicate with Nest.
+ * 
+ * @author jrh3k5
+ */
+
 public class ClientInformation {
     private final String code;
     private final String clientId;
     private final String clientSecret;
 
+    /**
+     * Creates a client information object.
+     * 
+     * @param code
+     *            The code used to identify the authorization granted to this client.
+     * @param clientId
+     *            The ID of the client.
+     * @param clientSecret
+     *            The secret used to verify the identity of this client.
+     */
     public ClientInformation(String code, String clientId, String clientSecret) {
         this.code = Objects.requireNonNull(code, "Code cannot be null");
         this.clientId = Objects.requireNonNull(clientId, "Client ID cannot be null");
         this.clientSecret = Objects.requireNonNull(clientSecret, "Client secret cannot be null");
     }
 
-    public String getCode() {
-        return code;
-    }
-
+    /**
+     * Gets the ID of the client.
+     * 
+     * @return The ID of the client.
+     */
     public String getClientId() {
         return clientId;
     }
 
+    /**
+     * Gets the secret used to verify the identity of this client.
+     * 
+     * @return The secret used to verify the identity of this client.
+     */
     public String getClientSecret() {
         return clientSecret;
+    }
+
+    /**
+     * Gets the code used to identify the authorization granted to this client.
+     * 
+     * @return The code used to identify the authorization granted to this client.
+     */
+    public String getCode() {
+        return code;
     }
 }
