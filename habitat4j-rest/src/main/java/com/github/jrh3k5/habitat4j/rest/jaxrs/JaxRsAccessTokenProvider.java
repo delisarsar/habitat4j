@@ -35,7 +35,7 @@ import com.github.jrh3k5.habitat4j.rest.ClientInformation;
 import com.github.jrh3k5.habitat4j.rest.NestUrls;
 
 /**
- * A JAX-RS backed implementation of {@link AccessTokenProvider.
+ * A JAX-RS backed implementation of {@link AccessTokenProvider}.
  * 
  * @author jrh3k5
  */
