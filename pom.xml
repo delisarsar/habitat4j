@@ -8,6 +8,8 @@
     <packaging>pom</packaging>
     <name>Habitat4j Parent</name>
     <description>The reactor POM to manage various components making up the Habitat4j Nest client.</description>
+    <url>https://github.com/jrh3k5/habitat4j</url>
+    <inceptionYear>2016</inceptionYear>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
@@ -21,16 +23,19 @@
         <module>habitat4j-test-app</module>
     </modules>
     <scm>
-        <connection>scm:git:git@github.com:jrh3k5/nest-client.git</connection>
-        <developerConnection>scm:git:git@github.com:jrh3k5/nest-client.git</developerConnection>
-        <url>https://github.com/jrh3k5/nest-client</url>
+        <connection>scm:git:git@github.com:jrh3k5/habitat4j.git</connection>
+        <developerConnection>scm:git:git@github.com:jrh3k5/habitat4j.git</developerConnection>
+        <url>https://github.com/jrh3k5/habitat4j</url>
         <tag>HEAD</tag>
     </scm>
     <issueManagement>
         <system>GitHub</system>
-        <url>https://github.com/jrh3k5/nest-client/issues</url>
+        <url>https://github.com/jrh3k5/exception-nonos/issues</url>
     </issueManagement>
-    <inceptionYear>2016</inceptionYear>
+    <ciManagement>
+        <system>Travis CI</system>
+        <url>https://travis-ci.org/jrh3k5/habitat4j</url>
+    </ciManagement>
     <organization>
         <name>jrh3k5</name>
         <url>https://github.com/jrh3k5</url>
