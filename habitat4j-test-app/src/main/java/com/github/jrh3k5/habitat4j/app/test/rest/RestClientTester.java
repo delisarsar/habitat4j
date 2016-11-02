@@ -22,28 +22,23 @@ package com.github.jrh3k5.habitat4j.app.test.rest;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.Objects;
 
-import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.fasterxml.jackson.jaxrs.json.JacksonJsonProvider;
+import com.github.jrh3k5.habitat4j.client.Client;
 import com.github.jrh3k5.habitat4j.rest.AccessTokenProvider;
+import com.github.jrh3k5.habitat4j.rest.CachingAccessTokenProvider;
 import com.github.jrh3k5.habitat4j.rest.ClientInformation;
 import com.github.jrh3k5.habitat4j.rest.NestUrls;
+import com.github.jrh3k5.habitat4j.rest.client.RestClient;
 import com.github.jrh3k5.habitat4j.rest.jaxrs.JaxRsAccessTokenProvider;
 
-/**
- * A small application used to exercise the supplied {@link JaxRsAccessTokenProvider} implementation.
- * 
- * @author jrh3k5
- */
-
-public class JaxRsAccessTokenProviderTester {
-    private static final Logger LOGGER = LoggerFactory.getLogger(JaxRsAccessTokenProviderTester.class);
+public class RestClientTester {
+    private static final Logger LOGGER = LoggerFactory.getLogger(RestClientTester.class);
 
     /**
      * Executes the application.
@@ -68,14 +63,17 @@ public class JaxRsAccessTokenProviderTester {
      *             If any errors occur while reading the properties.
      */
     private static void run(String clientPropertiesLocation) throws IOException {
+        final NestUrls nestUrls = new NestUrls();
+
         final ClientInformation clientInformation = new PropertiesClientInformationProvider().getClientInformation(new File(clientPropertiesLocation));
-        final Client client = ClientBuilder.newClient();
+        final javax.ws.rs.client.Client jaxRsClient = ClientBuilder.newClient();
         try {
-            client.register(JacksonJsonProvider.class);
-            final AccessTokenProvider accessTokenProvider = new JaxRsAccessTokenProvider(client, new NestUrls(), clientInformation);
-            Objects.requireNonNull(accessTokenProvider.getAccessToken());
+            jaxRsClient.register(JacksonJsonProvider.class);
+            final AccessTokenProvider accessTokenProvider = new CachingAccessTokenProvider(new JaxRsAccessTokenProvider(jaxRsClient, nestUrls, clientInformation));
+            final Client client = new RestClient(jaxRsClient, accessTokenProvider, nestUrls);
+            System.out.println(client.getThermostats());
         } finally {
-            client.close();
+            jaxRsClient.close();
         }
     }
 }

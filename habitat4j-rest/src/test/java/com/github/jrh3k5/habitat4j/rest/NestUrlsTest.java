@@ -33,6 +33,17 @@ import org.junit.Test;
 public class NestUrlsTest {
     private final NestUrls nestUrls = new NestUrls();
 
+    /**
+     * Tests the retrieval of the API URL.
+     */
+    @Test
+    public void testGetApiUrl() {
+        assertThat(nestUrls.getApiUrl()).isEqualTo("https://developer-api.nest.com");
+    }
+
+    /**
+     * Tests the retrieval of the OAuth 2.0 URL.
+     */
     @Test
     public void testGetOAuth2Url() {
         assertThat(nestUrls.getOauth2Url()).isEqualTo("https://api.home.nest.com/oauth2/access_token");

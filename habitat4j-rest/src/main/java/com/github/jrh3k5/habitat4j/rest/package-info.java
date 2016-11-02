@@ -1,10 +1,11 @@
-package com.github.jrh3k5.habitat4j.client;
-
-import java.util.List;
+/**
+ * REST utilities to support the REST implementation of the Nest client
+ */
+package com.github.jrh3k5.habitat4j.rest;
 
 /*-
  * #%L
- * Nest Client API
+ * Habitat4j REST Client
  * %%
  * Copyright (C) 2016 jrh3k5
  * %%
@@ -21,18 +22,3 @@ import java.util.List;
  * limitations under the License.
  * #L%
  */
-
-/**
- * Definition of a client used to interact with Nest.
- * 
- * @author jrh3k5
- */
-
-public interface Client {
-    /**
-     * Gets the thermostats.
-     * 
-     * @return A {@link List} of {@link Thermostat} objects representing all thermostats exposed by Nest to this client.
-     */
-    List<? extends Thermostat> getThermostats();
-}

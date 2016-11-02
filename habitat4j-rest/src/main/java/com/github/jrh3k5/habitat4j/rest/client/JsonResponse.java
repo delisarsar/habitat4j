@@ -1,10 +1,8 @@
-package com.github.jrh3k5.habitat4j.client;
-
-import java.util.List;
+package com.github.jrh3k5.habitat4j.rest.client;
 
 /*-
  * #%L
- * Nest Client API
+ * Habitat4j REST Client
  * %%
  * Copyright (C) 2016 jrh3k5
  * %%
@@ -22,17 +20,15 @@ import java.util.List;
  * #L%
  */
 
-/**
- * Definition of a client used to interact with Nest.
- * 
- * @author jrh3k5
- */
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
-public interface Client {
-    /**
-     * Gets the thermostats.
-     * 
-     * @return A {@link List} of {@link Thermostat} objects representing all thermostats exposed by Nest to this client.
-     */
-    List<? extends Thermostat> getThermostats();
+@JsonIgnoreProperties(ignoreUnknown = true)
+class JsonResponse {
+    @JsonProperty("devices")
+    private JsonDevices devices = new JsonDevices();
+
+    JsonDevices getDevices() {
+        return devices;
+    }
 }

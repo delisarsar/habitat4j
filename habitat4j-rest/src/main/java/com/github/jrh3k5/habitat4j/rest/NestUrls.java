@@ -28,6 +28,16 @@ package com.github.jrh3k5.habitat4j.rest;
 
 public class NestUrls {
     private static final String DEFAULT_OAUTH2_URL = "https://api.home.nest.com/oauth2/access_token";
+    private static final String DEFAULT_API_URL = "https://developer-api.nest.com";
+
+    /**
+     * Gets the URL of the Nest API.
+     * 
+     * @return The URL of the Nest API.
+     */
+    public String getApiUrl() {
+        return DEFAULT_API_URL;
+    }
 
     /**
      * Gets the URL used to retrieve OAuth 2.0 access tokens.
