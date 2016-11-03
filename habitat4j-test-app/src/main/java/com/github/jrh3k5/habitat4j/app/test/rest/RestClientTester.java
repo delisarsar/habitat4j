@@ -69,9 +69,11 @@ public class RestClientTester {
         final javax.ws.rs.client.Client jaxRsClient = ClientBuilder.newClient();
         try {
             jaxRsClient.register(JacksonJsonProvider.class);
-            final AccessTokenProvider accessTokenProvider = new CachingAccessTokenProvider(new JaxRsAccessTokenProvider(jaxRsClient, nestUrls, clientInformation));
+            final AccessTokenProvider accessTokenProvider = new CachingAccessTokenProvider(new JaxRsAccessTokenProvider(jaxRsClient, nestUrls, () -> {
+                return clientInformation;
+            }));
             final Client client = new RestClient(jaxRsClient, accessTokenProvider, nestUrls);
-            System.out.println(client.getThermostats());
+            LOGGER.info("The following thermostat information was returned: {}", client.getThermostats());
         } finally {
             jaxRsClient.close();
         }

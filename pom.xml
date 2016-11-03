@@ -61,6 +61,11 @@
                 <version>${jackson.version}</version>
             </dependency>
             <dependency>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-databind</artifactId>
+                <version>${jackson.version}</version>
+            </dependency>
+            <dependency>
                 <groupId>com.fasterxml.jackson.jaxrs</groupId>
                 <artifactId>jackson-jaxrs-json-provider</artifactId>
                 <version>${jackson.version}</version>
@@ -236,6 +241,10 @@
                         <phase>process-sources</phase>
                         <configuration>
                             <licenseName>apache_v2</licenseName>
+                            <excludes>
+                                <!-- The license header screws up the JSON text -->
+                                <exclude>**/*.json</exclude>
+                            </excludes>
                         </configuration>
                     </execution>
                 </executions>

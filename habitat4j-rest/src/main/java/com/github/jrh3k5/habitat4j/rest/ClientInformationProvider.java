@@ -1,4 +1,4 @@
-package com.github.jrh3k5.habitat4j.rest.client;
+package com.github.jrh3k5.habitat4j.rest;
 
 /*-
  * #%L
@@ -20,26 +20,17 @@ package com.github.jrh3k5.habitat4j.rest.client;
  * #L%
  */
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonProperty;
-
 /**
- * A data object representing the JSON response from the Nest API.
+ * Definition of a provider of {@link ClientInformation}.
  * 
  * @author jrh3k5
  */
 
-@JsonIgnoreProperties(ignoreUnknown = true)
-class JsonResponse {
-    @JsonProperty("devices")
-    private JsonDevices devices = new JsonDevices();
-
+public interface ClientInformationProvider {
     /**
-     * Gets the devices exposed via the JSON API.
+     * Provides client information needed to communicate with Nest.
      * 
-     * @return A {@link JsonDevices} object representing the list of devices.
+     * @return A {@link ClientInformation} to be used to provision client information.
      */
-    JsonDevices getDevices() {
-        return devices;
-    }
+    ClientInformation provide();
 }

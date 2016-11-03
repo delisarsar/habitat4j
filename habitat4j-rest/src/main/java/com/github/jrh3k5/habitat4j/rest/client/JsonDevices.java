@@ -31,11 +31,22 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+/**
+ * A data object representing the {@code devices} response from the Nest API.
+ * 
+ * @author jrh3k5
+ */
+
 @JsonIgnoreProperties(ignoreUnknown = true)
 class JsonDevices {
     @JsonProperty("thermostats")
     private final Map<String, JsonThermostat> thermostats = new HashMap<String, JsonThermostat>();
 
+    /**
+     * Gets a list of thermostats.
+     * 
+     * @return A {@link List} of {@link JsonThermostat} objects representing the known thermostats.
+     */
     List<JsonThermostat> getThermostats() {
         return Collections.unmodifiableList(new ArrayList<>(thermostats.values()));
     }

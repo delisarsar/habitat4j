@@ -29,7 +29,22 @@ import org.apache.commons.io.FileUtils;
 
 import com.github.jrh3k5.habitat4j.rest.ClientInformation;
 
+/**
+ * A utility class that provides {@link ClientInformation} objects out of a properties file on disk.
+ * 
+ * @author jrh3k5
+ */
+
 public class PropertiesClientInformationProvider {
+    /**
+     * Build a client information object.
+     * 
+     * @param propertiesFile
+     *            A {@link File} from which data is to be read.
+     * @return A {@link ClientInformation} built out of the given properties file.
+     * @throws IOException
+     *             If any errors occur while reading the file.
+     */
     public ClientInformation getClientInformation(File propertiesFile) throws IOException {
         try (final InputStream inputStream = FileUtils.openInputStream(propertiesFile)) {
             final Properties properties = new Properties();

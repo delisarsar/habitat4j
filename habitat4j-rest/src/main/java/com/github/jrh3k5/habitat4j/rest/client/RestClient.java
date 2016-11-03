@@ -31,11 +31,29 @@ import com.github.jrh3k5.habitat4j.rest.AccessToken;
 import com.github.jrh3k5.habitat4j.rest.AccessTokenProvider;
 import com.github.jrh3k5.habitat4j.rest.NestUrls;
 
+/**
+ * A REST implementation of the habitat4j Nest client.
+ * 
+ * @author jrh3k5
+ */
+
 public class RestClient implements com.github.jrh3k5.habitat4j.client.Client {
     private final Client jaxRsClient;
     private final AccessTokenProvider accessTokenProvider;
     private final NestUrls nestUrls;
 
+    /**
+     * Create a client.
+     * 
+     * @param jaxRsClient
+     *            A {@link Client} to be used to communicate with the Nest service.
+     * @param accessTokenProvider
+     *            An {@link AccessTokenProvider} used to provision access tokens.
+     * @param nestUrls
+     *            A {@link NestUrls} object describing the URLs to be used to interact with Nest.
+     * @throws NullPointerException
+     *             If any of the given objects are {@code null}.
+     */
     public RestClient(Client jaxRsClient, AccessTokenProvider accessTokenProvider, NestUrls nestUrls) {
         this.jaxRsClient = Objects.requireNonNull(jaxRsClient, "JAX-RS client cannot be null");
         this.accessTokenProvider = Objects.requireNonNull(accessTokenProvider, "Access token cannot be null");
@@ -45,7 +63,6 @@ public class RestClient implements com.github.jrh3k5.habitat4j.client.Client {
     @Override
     public List<? extends Thermostat> getThermostats() {
         final AccessToken accessToken = accessTokenProvider.getAccessToken();
-        System.out.println(jaxRsClient.target(nestUrls.getApiUrl()).request(MediaType.APPLICATION_JSON_TYPE).header("Authorization", "Bearer " + accessToken.getToken()).get(String.class));
         return jaxRsClient.target(nestUrls.getApiUrl()).request(MediaType.APPLICATION_JSON_TYPE).header("Authorization", "Bearer " + accessToken.getToken()).get(JsonResponse.class).getDevices()
                 .getThermostats();
     }

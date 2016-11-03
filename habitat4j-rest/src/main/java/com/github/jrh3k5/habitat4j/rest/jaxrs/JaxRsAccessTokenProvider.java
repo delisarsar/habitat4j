@@ -32,6 +32,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.github.jrh3k5.habitat4j.rest.AccessToken;
 import com.github.jrh3k5.habitat4j.rest.AccessTokenProvider;
 import com.github.jrh3k5.habitat4j.rest.ClientInformation;
+import com.github.jrh3k5.habitat4j.rest.ClientInformationProvider;
 import com.github.jrh3k5.habitat4j.rest.NestUrls;
 
 /**
@@ -43,7 +44,7 @@ import com.github.jrh3k5.habitat4j.rest.NestUrls;
 public class JaxRsAccessTokenProvider implements AccessTokenProvider {
     private final Client client;
     private final NestUrls nestUrls;
-    private final ClientInformation clientInformation;
+    private final ClientInformationProvider clientInformationProvider;
 
     /**
      * Creates an access token provider.
@@ -52,22 +53,22 @@ public class JaxRsAccessTokenProvider implements AccessTokenProvider {
      *            The JAX-RS {@link Client} to be used to execute the request.
      * @param nestUrls
      *            A {@link NestUrls} object describing the location of Nest resources.
-     * @param clientInformation
-     *            A {@link ClientInformation} object describing identifying information of the client.
+     * @param clientInformationProvider
+     *            A {@link ClientInformationProvider} object used to provide an information object describing identifying information of the client.
      * @throws NullPointerException
      *             If any of the given objects are {@code null}.
      */
-    public JaxRsAccessTokenProvider(Client client, NestUrls nestUrls, ClientInformation clientInformation) {
+    public JaxRsAccessTokenProvider(Client client, NestUrls nestUrls, ClientInformationProvider clientInformationProvider) {
         this.client = Objects.requireNonNull(client);
         this.nestUrls = nestUrls;
-        this.clientInformation = Objects.requireNonNull(clientInformation);
+        this.clientInformationProvider = Objects.requireNonNull(clientInformationProvider);
     }
 
     @Override
     public AccessToken getAccessToken() {
         final LocalDateTime startDateTime = LocalDateTime.now();
-        final AccessTokenResponse response = client.target(nestUrls.getOauth2Url()).request(MediaType.APPLICATION_FORM_URLENCODED_TYPE).post(Entity.form(toFormBody(clientInformation)),
-                AccessTokenResponse.class);
+        final AccessTokenResponse response = client.target(nestUrls.getOauth2Url()).request(MediaType.APPLICATION_FORM_URLENCODED_TYPE)
+                .post(Entity.form(toFormBody(clientInformationProvider.provide())), AccessTokenResponse.class);
         // Be pessimistic about the expiration - better to get a new token a bit ahead of time rather than risk expiration
         final LocalDateTime expiration = startDateTime.plusSeconds(response.getLifeMillis() / 1000);
         return new SimpleAccessToken(response.getAccessToken(), expiration);

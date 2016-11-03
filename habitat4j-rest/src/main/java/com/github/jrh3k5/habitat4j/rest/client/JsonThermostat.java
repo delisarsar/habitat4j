@@ -29,8 +29,14 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.github.jrh3k5.habitat4j.client.TemperatureUnit;
 import com.github.jrh3k5.habitat4j.client.Thermostat;
 
+/**
+ * A {@link Thermostat} implementation pulling information from a JSON representation of a thermostat.
+ * 
+ * @author jrh3k5
+ */
+
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class JsonThermostat implements Thermostat {
+class JsonThermostat implements Thermostat {
     @JsonProperty("device_id")
     private String deviceId;
     @JsonProperty("ambient_temperature_f")
@@ -60,10 +66,23 @@ public class JsonThermostat implements Thermostat {
         return ToStringBuilder.reflectionToString(this);
     }
 
+    /**
+     * A {@link Thermostat.Temperatures} object representing the temperatures advertised by a thermostat.
+     * 
+     * @author jrh3k5
+     */
     private static final class SimpleTemperatures implements Thermostat.Temperatures {
         private final TemperatureUnit temperatureUnit;
         private final float ambientTemperature;
 
+        /**
+         * Create a temperatures object.
+         * 
+         * @param temperatureUnit
+         *            A {@link TemperatureUnit} denoting the temperature unit contained within this object.
+         * @param ambientTemperature
+         *            The ambient temperature, expressed in the given temperature unit.
+         */
         private SimpleTemperatures(TemperatureUnit temperatureUnit, float ambientTemperature) {
             this.temperatureUnit = Objects.requireNonNull(temperatureUnit);
             this.ambientTemperature = ambientTemperature;
@@ -77,6 +96,11 @@ public class JsonThermostat implements Thermostat {
         @Override
         public TemperatureUnit getTemperatureUnit() {
             return temperatureUnit;
+        }
+
+        @Override
+        public String toString() {
+            return ToStringBuilder.reflectionToString(this);
         }
     }
 }

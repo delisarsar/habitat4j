@@ -78,7 +78,9 @@ public class JaxRsAccessTokenProviderTest {
         when(clientInformation.getClientId()).thenReturn(clientId);
         when(clientInformation.getClientSecret()).thenReturn(clientSecret);
 
-        tokenProvider = new JaxRsAccessTokenProvider(client, nestUrls, clientInformation);
+        tokenProvider = new JaxRsAccessTokenProvider(client, nestUrls, () -> {
+            return clientInformation;
+        });
     }
 
     /**

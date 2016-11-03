@@ -72,7 +72,9 @@ public class JaxRsAccessTokenProviderTester {
         final Client client = ClientBuilder.newClient();
         try {
             client.register(JacksonJsonProvider.class);
-            final AccessTokenProvider accessTokenProvider = new JaxRsAccessTokenProvider(client, new NestUrls(), clientInformation);
+            final AccessTokenProvider accessTokenProvider = new JaxRsAccessTokenProvider(client, new NestUrls(), () -> {
+                return clientInformation;
+            });
             Objects.requireNonNull(accessTokenProvider.getAccessToken());
         } finally {
             client.close();
