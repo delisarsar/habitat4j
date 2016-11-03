@@ -7,6 +7,8 @@ Refer to the [Nest overview documentation](https://developers.nest.com/documenta
 Once you have [created a product](https://developers.nest.com/documentation/cloud/rest-quick-guide/#create-a-product) to get your OAuth client ID and secret and then have [obtained your authorization code](https://developers.nest.com/documentation/cloud/rest-quick-guide/#get-an-authorization-code), you can assemble your client code thusly:
 
 ```java
+package app.example;
+
 import java.io.File;
 import java.io.IOException;
 
@@ -25,6 +27,8 @@ import com.github.jrh3k5.habitat4j.rest.client.RestClient;
 import com.github.jrh3k5.habitat4j.rest.jaxrs.JaxRsAccessTokenProvider;
 
 public class MyApp {
+    private static final Logger LOGGER = LoggerFactory.getLogger(MyApp.class);
+
     public static void run() throws Exception {
         final NestUrls nestUrls = new NestUrls();
 
@@ -46,5 +50,5 @@ public class MyApp {
 This will print out something like the following:
 
 ```
-[main] INFO com.github.jrh3k5.habitat4j.app.test.rest.RestClientTester - The following thermostat information was returned: [com.github.jrh3k5.habitat4j.rest.client.JsonThermostat@6dd7b5a3[deviceId=Zjf8923k-dskfs_wc23,ambientTemperatureFarenheit=79.0,ambientTemperatureCelsius=25.5]]
+[main] INFO app.example.MyApp - The following thermostat information was returned: [com.github.jrh3k5.habitat4j.rest.client.JsonThermostat@6dd7b5a3[deviceId=Zjf8923k-dskfs_wc23,ambientTemperatureFarenheit=79.0,ambientTemperatureCelsius=25.5]]
 ```
