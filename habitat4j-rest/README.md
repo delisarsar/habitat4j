@@ -9,9 +9,6 @@ Once you have [created a product](https://developers.nest.com/documentation/clou
 ```java
 package app.example;
 
-import java.io.File;
-import java.io.IOException;
-
 import javax.ws.rs.client.ClientBuilder;
 
 import org.slf4j.Logger;
