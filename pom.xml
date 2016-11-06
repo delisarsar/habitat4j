@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.github.jrh3k5</groupId>
     <artifactId>habitat4j-parent</artifactId>
@@ -30,7 +29,7 @@
     </scm>
     <issueManagement>
         <system>GitHub</system>
-        <url>https://github.com/jrh3k5/exception-nonos/issues</url>
+        <url>https://github.com/jrh3k5/habitat4j/issues</url>
     </issueManagement>
     <ciManagement>
         <system>Travis CI</system>
@@ -53,6 +52,16 @@
             <url>https://github.com/jrh3k5/</url>
         </developer>
     </developers>
+    <distributionManagement>
+        <snapshotRepository>
+            <id>ossrh</id>
+            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+        </snapshotRepository>
+        <repository>
+            <id>ossrh</id>
+            <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+        </repository>
+    </distributionManagement>
     <dependencyManagement>
         <dependencies>
             <dependency>
@@ -151,7 +160,7 @@
                     <artifactId>maven-source-plugin</artifactId>
                     <version>3.0.1</version>
                 </plugin>
-                <!--This plugin's configuration is used to store Eclipse m2e settings only. It has no influence on the Maven build itself.-->
+                <!--This plugin's configuration is used to store Eclipse m2e settings only. It has no influence on the Maven build itself. -->
                 <plugin>
                     <groupId>org.eclipse.m2e</groupId>
                     <artifactId>lifecycle-mapping</artifactId>
@@ -175,6 +184,11 @@
                             </pluginExecutions>
                         </lifecycleMappingMetadata>
                     </configuration>
+                </plugin>
+                <plugin>
+                    <groupId>org.sonatype.plugins</groupId>
+                    <artifactId>nexus-staging-maven-plugin</artifactId>
+                    <version>1.6.7</version>
                 </plugin>
             </plugins>
         </pluginManagement>
