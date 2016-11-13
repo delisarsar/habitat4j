@@ -1,4 +1,5 @@
 [![Build Status](https://travis-ci.org/jrh3k5/habitat4j.svg?branch=master)](https://travis-ci.org/jrh3k5/habitat4j/)
+[![Coverage Status](https://coveralls.io/repos/github/jrh3k5/habitat4j/badge.svg?branch=master)](https://coveralls.io/github/jrh3k5/habitat4j?branch=master)
 
 # Habitat4j
 
