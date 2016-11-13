@@ -3,3 +3,5 @@ jdk: oraclejdk8
 script: mvn verify
 notifications:
   email: true
+after_success:
+  - mvn clean test jacoco:report coveralls:report
