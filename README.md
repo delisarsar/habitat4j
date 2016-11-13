@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/jrh3k5/habitat4j.svg?branch=master)](https://travis-ci.org/jrh3k5/habitat4j/)
+
 # Habitat4j
 
 A Java client for interacting with the Nest thermostat and other device APIs.
