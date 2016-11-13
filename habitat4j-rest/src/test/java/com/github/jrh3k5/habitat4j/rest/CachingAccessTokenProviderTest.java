@@ -62,13 +62,15 @@ public class CachingAccessTokenProviderTest {
     @Test
     public void testGetAccessToken() throws Exception {
         final AccessToken accessToken0 = mock(AccessToken.class);
-        // The first times it's queried after creation, it should reflect that it's not yet ready to be refresh - but is on the second inquiry
-        when(accessToken0.getExpiration()).thenReturn(LocalDateTime.now().plus(2, ChronoUnit.HOURS), LocalDateTime.now());
+        // The first times it's queried after creation, it should reflect that it's not yet ready to be refresh - but is on the third inquiry
+        when(accessToken0.getExpiration()).thenReturn(LocalDateTime.now().plus(2, ChronoUnit.HOURS), LocalDateTime.now().plus(2, ChronoUnit.HOURS), LocalDateTime.now());
         final AccessToken accessToken1 = mock(AccessToken.class);
         when(tokenProvider.getAccessToken()).thenReturn(accessToken0, accessToken1);
 
         assertThat(cachingProvider.getAccessToken()).isEqualTo(accessToken0);
         // Trigger a refresh evaluation
+        assertThat(cachingProvider.getAccessToken()).isEqualTo(accessToken0);
+        // Still shouldn't have been determined as needing a refresh
         assertThat(cachingProvider.getAccessToken()).isEqualTo(accessToken0);
         // Trigger a refresh again - this time, a "new" access token should be created
         assertThat(cachingProvider.getAccessToken()).isEqualTo(accessToken1);
